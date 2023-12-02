@@ -78,13 +78,35 @@
 
 
 
+
 	</head>
 	<body>
+
+
 		<div id="map"></div>
 		<script src="js/map.js"></script>
 		<div class="container">
-		<div class="fb-share-button"  data-href="https://catastrourubamba.github.io/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcatastrourubamba.github.io%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+		<div class="fb-share-button"  data-href="https://catastrosansebastian.github.io/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcatastrosansebastian.github.io%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 		</div>
+		<div id="bienvenida-container" class="hidden">
+			<!-- Contenido actual del bienvenida-container -->
+			<script src="js/bienvenida.js"></script>
+			<img id="logo" src="images/urubamba.png" alt="Logo">
+			<p>BIENVENIDO AL PROYECTO 2023 "AMPLIACIÓN DEL SISTEMA DE INFORMACIÓN CATASTRAL URBANA DEL DISTRITO DE SAN SEBASTIÁN - CUSCO"</p>
+			<button id="cerrar-btn">Cerrar</button>
+			<script>// Mostrar el contenedor al cargar la página
+				document.addEventListener('DOMContentLoaded', function() {
+					document.getElementById('bienvenida-container').style.display = 'block';
+				});
+				
+				// Agregar un evento al botón de cerrar para ocultar el contenedor
+				document.getElementById('cerrar-btn').addEventListener('click', function() {
+					document.getElementById('bienvenida-container').style.display = 'none';
+				});
+				</script>
+		</div>
+		
+
 		
 	</body>
 </html>

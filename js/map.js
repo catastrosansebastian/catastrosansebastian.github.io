@@ -1,21 +1,21 @@
+var map = L.map('map', { zoomControl: true }).setView([-13.52162,-71.94475], 18);
 
-var map = L.map('map',{
-  fullscreenControl: true,
-  fullscreenControlOptions: { // optional
-    title:"Mostrar mapa completo!!!",
-    titleCancel:"Salir del mapa completo"}
-}).setView([-13.537773,-71.922527], 14); // Urubamba
-// 13, 21
-map.options.minZoom = 1;
-map.options.maxZoom = 28;
-
-var fondo = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map)
-
+var fondo = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  attribution: 'osm',
+  maxZoom: 28,
+}).addTo(map);
 
 
 var cartodb = {
-  'OSM:':L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
-  'ESRI SATELITE:':L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+  'OSM:':L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution: 'osm',
+    maxZoom: 28,
+  }),
+  'GOOGLE SATELITE:':L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}',{
+    attribution: 'osm',
+    maxZoom: 28,
+  }),
+
 };
 
 
@@ -98,8 +98,8 @@ function Infoerp(feature, layer) {
       +"<b>Sector: </b>"+feature.properties.cod_sector+"</b><br>"
       +"<b>Manzana: </b>"+feature.properties.cod_mzna+"</b><br>"
       +"<b>Lote: </b>"+feature.properties.cod_lote+"</b><br>"
-      +"<b>Area_m2: </b>"+feature.properties.area_grafica+"</b><br>"
-      +"<b>Perimetro_m: </b>"+feature.properties.peri_grafico+"</b><br>"
+      +"<b>Area_m2: </b>"+feature.properties.area_grafi+"</b><br>"
+      +"<b>Perimetro_m: </b>"+feature.properties.peri_grafi+"</b><br>"
       +"<b>----------------------------------------------------</b><br>"
 
       +"<b>Foto: </b><br>"+'<center><img src=' + feature.properties.foto + ' height="200px" width="200px"/></center>'
@@ -249,11 +249,7 @@ var credctrl = L.controlCredits({
   text: "<strong>Ver Pisos</strong><br/><b>3D!!!</b>",
 }).addTo(map);
 
-var bar = L.controlCredits({
-  image: "images/bar.svg",
-  link: "https://catastrourubamba.github.io/tablero/",
-  text: "<strong>Ver Tablero de Control</strong><br/><b>Tablero!!!</b>",
-}).addTo(map);
+
 
 var customActionToPrint = function(context, mode) {
 	return function() {
@@ -380,7 +376,7 @@ var notification = L.control
 
 
 //custom options per notification
-notification.success('Bienvenido', '💙 San Sebastian 💙 Es Unico!!!', {
+notification.success('Proceso', 'Fotos de Fachada estan en proceso de actualizacion', {
     timeout: 6000,
     closable: false,
     dismissable: false,
@@ -396,47 +392,7 @@ notification.alert('Alerta', 'La app web corre mas veloz en escritorio.', {
   className: 'important-alert',
 });
 
-// vias
-notification.info('Info', 'Activar solo si es necesario la capa Vias.', {
-  timeout: 10000,
-  closable: false,
-  dismissable: false,
-  icon: 'fa fa-info-circle',
-  className: 'important-info',
-});
+
 
 var modernNotifications = L.control.notifications({ className: 'modern' }).addTo(map);
 
-
-
-/* contents 
-const right = '<div class="header">---</div>';
-let contents = `
-      <div class="content">
-      <p>La Municipalidad de Urubamba ofrece el libre acceso a la información cartográfica Catastral.</p>
-          <div class="title">¿Que es Catastro?</div>
-          <p>Inventario de unidades inmobiliarias desde aspectos físicos, jurídicos, fiscales, económicos y culturales.</p>       
-          <div class="title">Proyecto</div>
-          <p><b>Mejoramiento del Servicio de Información Predial Urbana del Distrito de Urubamba</b></p>
-          <div class="title">Misión</div>
-          <p><b>Declarar Urubamba como Zona Catastrada.</b></p>
-          <div class="title">Vision</div>
-          <p><b>Líder entre las entidades generadoras de Catastro en el Perú.</b></p>
-          <div class="title">Tutorial 2022</div>
-          <a href="https://youtu.be/iT-Yh0IjTIM">&#127760 Ver Tutorial</a>
-      </div>`;
-
-
-
-const slideMenu = L.control
-  .slideMenu("", {
-    position: "topright",
-    menuposition: "topright",
-    width: "30%",
-    height: "400px",
-    delay: "50",
-    icon:  'fa-solid fa-bars',
-  })
-  .addTo(map);
-slideMenu.setContents(right + contents);
-*/
